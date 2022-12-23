@@ -1,0 +1,37 @@
+<div class="w-full">
+  <div class="m-10 border-2 border-pink-500">
+    <div class="pt-10 pb-10 pl-20 pr-20">
+      <form [formGroup]="secondForm">
+        <div class="grid grid-cols-2 space-x-10">
+          <div class="flex items-center space-x-7">
+            <label class="block w-1/4">Salary</label>
+            <mat-form-field class="border-2 rounded-md p-3 w-full">
+              <input matInput formControlName="salary">
+              <mat-error class="text-red-500 mt-4">Salary is required..!</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="flex items-center space-x-7">
+            <label class="block w-1/4">Designation</label>
+            <mat-form-field class="border-2 rounded-md p-3 w-full">
+              <input matInput formControlName="designation">
+              <mat-error class="text-red-500 mt-4">Designation is required..!</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 space-x-10 mt-8">
+          <div class="flex items-center space-x-7">
+          </div>
+          <div class="flex items-center space-x-7">
+            <label class="block w-1/4">Phone</label>
+            <mat-form-field class="border-2 rounded-md p-3 w-full">
+              <input matInput formControlName="phone">
+              <mat-error class="text-red-500 mt-4">Phone is required..!</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

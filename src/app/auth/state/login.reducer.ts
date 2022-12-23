@@ -14,7 +14,8 @@ const _loginReducer = createReducer(isLoginPassState,
     return isLoginPass
   }),
   on(logout, (isLoginPass: boolean) => {
-    return isLoginPass = false;
+    isLoginPass = false
+    return isLoginPass;
   })
 )
 

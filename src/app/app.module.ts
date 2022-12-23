@@ -10,6 +10,9 @@ import {MatIconModule} from "@angular/material/icon";
 import {ToastrModule} from "ngx-toastr";
 import {StoreModule} from "@ngrx/store";
 import {loginReducer} from "./auth/state/login.reducer";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatButtonModule} from "@angular/material/button";
+import {empListReducer} from "./employee/state/employee.reducer";
 
 @NgModule({
   declarations: [
@@ -23,9 +26,11 @@ import {loginReducer} from "./auth/state/login.reducer";
     HttpClientModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
     ToastrModule.forRoot(),
     StoreModule.forRoot(
-      { isLoginPass: loginReducer}
+      { isLoginPass: loginReducer, empList: empListReducer}
     )
   ],
   providers: [],

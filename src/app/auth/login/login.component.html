@@ -1,15 +1,22 @@
-<div class="flex justify-center min-h-screen bg-gray-500">
-  <div class="px-8 py-6 mt-36 text-left bg-white shadow-lg" style="height: 275px;">
+<div class="flex justify-center min-h-screen bg-gray-200">
+  <div class="px-8 py-6 mt-36 text-left bg-white shadow-lg" style="height: 275px; width: 480px">
     <h3 class="text-2xl font-bold text-center">Login to your account</h3>
     <form [formGroup]="formGroup">
       <div class="mt-4">
         <div>
           <label class="block">Email</label>
-            <input class="border-2 rounded-md" [formControlName]="'email'" type="email">
+          <mat-form-field class="border-b-2 w-full">
+            <input matInput required formControlName="email" type="email">
+            <mat-error class="text-red-500">Email Required</mat-error>
+          </mat-form-field>
+          <!--<div class="text-red-500 mt-1">Enter valid Email..!!</div>-->
         </div>
         <div class="mt-4">
           <label class="block">Password</label>
-            <input class="border-2 rounded-md" [formControlName]="'password'" type="password">
+          <mat-form-field class="border-b-2 w-full">
+            <input matInput required formControlName="password" type="password">
+            <mat-error class="text-red-500">Password Required</mat-error>
+          </mat-form-field>
         </div>
         <div class="flex items-baseline justify-between">
           <button [disabled]="formGroup.invalid" (click)="login()"

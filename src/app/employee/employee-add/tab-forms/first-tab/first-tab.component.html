@@ -1,0 +1,38 @@
+<div class="w-full">
+  <div class="m-10 border-2 border-pink-500">
+    <div class="pt-10 pb-10 pl-20 pr-20">
+      <form [formGroup]="firstForm">
+        <div class="grid grid-cols-2 space-x-10">
+          <div class="flex items-center space-x-7">
+            <label class="block w-1/4">Name</label>
+            <mat-form-field class="border-2 rounded-md p-3 w-full">
+              <input matInput formControlName="name">
+              <mat-error class="text-red-500 mt-4">Name is required..!</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="flex items-center space-x-7">
+            <label class="block w-1/4">Age</label>
+            <mat-form-field class="border-2 rounded-md p-3 w-full">
+              <input matInput formControlName="age">
+              <mat-error class="text-red-500 mt-4">Age is required..!</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 space-x-10 mt-8">
+          <div class="flex items-center space-x-7">
+          </div>
+          <div class="flex items-center space-x-7" style="margin-left: 28px;">
+            <label class="block w-1/4">Gender</label>
+            <mat-radio-group class="space-x-6" aria-label="Select an option">
+              <mat-radio-button value="Male">Male</mat-radio-button>
+              <mat-radio-button value="Female">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+

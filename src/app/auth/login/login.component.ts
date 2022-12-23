@@ -3,6 +3,7 @@ import {FormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
 import {Store} from "@ngrx/store";
 import {AuthService} from "../service/auth.service";
 import {ToastrService} from "ngx-toastr";
+import {Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private store: Store<{isLoginPass: boolean}>,
     private authService: AuthService,
-    private toast: ToastrService
+    private toast: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -37,30 +39,28 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.validateEmail()) {
-      this.authService.login(this.formGroup.value);
-      this.store.select('isLoginPass').subscribe((res) => {
-        if (res) {
-          this.toast.success('Success', "Login Successfully!", this.config);
-        }
-      })
+      let response = this.authService.login(this.formGroup.value);
+      if (response) {
+        this.store.select('isLoginPass').subscribe((res) => {
+          if (res) {
+            this.toast.success('Success', "Login Successfully!", this.config);
+            this.router.navigate(['/employee/list'])
+          }
+        })
+      } else {
+        this.toast.error('Wrong Email or Password')
+      }
     } else {
-      return;
+      this.toast.warning("please enter valid email")
     }
-
   }
 
   validateEmail(): any {
     if (this.formGroup.value.email != '') {
       const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       this.emailTest = re.test(String(this.formGroup.value.email).toLowerCase())
-      if (this.emailTest != true) {
-        this.toast.warning("please enter valid email")
-        return false;
-      } else {
-        return true;
-      }
+      return this.emailTest == true;
     }
   }
 
-
-  }
+}
