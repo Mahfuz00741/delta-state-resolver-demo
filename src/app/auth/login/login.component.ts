@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {Store} from "@ngrx/store";
 import {AuthService} from "../service/auth.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-login',
@@ -16,6 +17,7 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     // private store: Store<{isLogin: boolean}>,
     private authService: AuthService,
+    private toast: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
   login() {
     let value = this.authService.login(this.formGroup.value);
     if (value) {
+      this.toast.success("Success")
     }
   }
 }
