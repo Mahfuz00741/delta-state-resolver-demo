@@ -3,6 +3,8 @@ import {EmployeeModel} from "../model/employee.model";
 import {MatTableDataSource} from "@angular/material/table";
 import {EmployeeService} from "../services/employee.service";
 import {Store} from "@ngrx/store";
+import {Router} from "@angular/router";
+import {initializeEmployee} from "../state/employee.action";
 
 @Component({
   selector: 'app-employee-list',
@@ -16,7 +18,8 @@ export class EmployeeListComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-    private store: Store<{empList: EmployeeModel[]}>,
+    private router: Router,
+    private store: Store<{empList: EmployeeModel[], }>,
   ) { }
 
   ngOnInit(): void {
@@ -27,4 +30,8 @@ export class EmployeeListComponent implements OnInit {
     // this.dataSource = new MatTableDataSource(this.employeeService.empList);
   }
 
+  editEmployee(element) {
+    this.store.dispatch(initializeEmployee(element));
+    this.router.navigate(['/employee/add'])
+  }
 }

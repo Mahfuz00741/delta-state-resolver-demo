@@ -1,6 +1,6 @@
 import {createReducer, on} from "@ngrx/store";
-import {empListState} from "./employee.state";
-import {loadEmpList} from "./employee.action";
+import {empListState, initialState} from "./employee.state";
+import {initializeEmployee, loadEmpList} from "./employee.action";
 import {EmployeeModel} from "../model/employee.model";
 
 export function empListReducer(state: any, action: any) {
@@ -12,4 +12,23 @@ const _empListReducer = createReducer(empListState,
     empList = empListState;
     return empList;
   })
-  )
+)
+
+export function empInitializeReducer(state: any, action: any) {
+  return _empReducer(state, action);
+}
+
+const _empReducer = createReducer(initialState,
+  on(initializeEmployee, (employeeModel: EmployeeModel, {employee}) =>{
+    employee = {
+      id: employee.id,
+      name: employee.name,
+      age: employee.age,
+      gender: employee.gender,
+      salary: employee.salary,
+      designation: employee.designation,
+      phone: employee.phone,
+    };
+    return employee;
+  })
+)

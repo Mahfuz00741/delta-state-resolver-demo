@@ -12,7 +12,7 @@ import {StoreModule} from "@ngrx/store";
 import {loginReducer} from "./auth/state/login.reducer";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
-import {empListReducer} from "./employee/state/employee.reducer";
+import {empInitializeReducer, empListReducer} from "./employee/state/employee.reducer";
 
 @NgModule({
   declarations: [
@@ -30,7 +30,7 @@ import {empListReducer} from "./employee/state/employee.reducer";
     MatButtonModule,
     ToastrModule.forRoot(),
     StoreModule.forRoot(
-      { isLoginPass: loginReducer, empList: empListReducer}
+      { isLoginPass: loginReducer, empList: empListReducer, employeeModel: empInitializeReducer}
     )
   ],
   providers: [],
