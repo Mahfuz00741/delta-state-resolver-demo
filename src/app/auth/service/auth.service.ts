@@ -1,22 +1,26 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import { login, logout } from 'src/app/auth/state/login.action';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() { }
-
-  User: any [] = [
-    {email: 'root@mail.com', password: 1234},
-    {email: 'user@mail.com', password: 1234}
+  userList: any[] = [
+    {email: 'root@mail.com', password: '1234'},
+    {email: 'user@mail.com', password: '1234'}
   ]
 
-  // @ts-ignore
+  constructor(
+    private store: Store<{ isLogin: Boolean }>,
+  ) {}
+
   public login(value: any): any {
-    let find = this.User.find(f => (f.email == value.email && f.password == value.password));
-    return !!find;
+    let find = this.userList.find(f => (f.email == value.email && f.password == value.password));
+    if (find) {
+      this.store.dispatch(login());
+    }
   }
 
 }
