@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
 import {Store} from "@ngrx/store";
 import {AuthService} from "../service/auth.service";
+import {login} from "../state/login.action";
 import {ToastrService} from "ngx-toastr";
 import {Route, Router} from "@angular/router";
 
@@ -19,11 +20,12 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: UntypedFormBuilder,
-    private store: Store<{isLoginPass: boolean}>,
+    private store: Store<{ isLoginPass: boolean, users: any[] }>,
     private authService: AuthService,
     private toast: ToastrService,
     private router: Router
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
@@ -50,6 +52,25 @@ export class LoginComponent implements OnInit {
       } else {
         this.toast.error('Wrong Email or Password')
       }
+    } else {
+      this.toast.warning("please enter valid email")
+    }
+  }
+
+  login2() {
+    if (this.validateEmail()) {
+      this.store.select('users').subscribe((res) => {
+        if (res.length > 0) {
+          let find = res.find(f => (f.email == this.formGroup.value.email && f.password == this.formGroup.value.password));
+          if (find) {
+            this.store.dispatch(login());
+            this.toast.success('Success', "Login Successfully!", this.config);
+            this.router.navigate(['/employee/list'])
+          } else {
+            this.toast.error('Wrong Email or Password')
+          }
+        }
+      })
     } else {
       this.toast.warning("please enter valid email")
     }

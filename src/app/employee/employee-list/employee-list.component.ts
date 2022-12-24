@@ -4,7 +4,7 @@ import {MatTableDataSource} from "@angular/material/table";
 import {EmployeeService} from "../services/employee.service";
 import {Store} from "@ngrx/store";
 import {Router} from "@angular/router";
-import {initializeEmployee} from "../state/employee.action";
+import {deleteEmployee, initializeEmployee} from "../state/employee.action";
 
 @Component({
   selector: 'app-employee-list',
@@ -27,11 +27,16 @@ export class EmployeeListComponent implements OnInit {
     this.store.select('empList').subscribe((res) => {
       this.dataSource = new MatTableDataSource(res);
     })
-    // this.dataSource = new MatTableDataSource(this.employeeService.empList);
   }
 
   editEmployee(element) {
-    this.store.dispatch(initializeEmployee(element));
+    this.store.dispatch(initializeEmployee({...element}));
     this.router.navigate(['/employee/add'])
   }
+
+  deleteEmployee(element) {
+    this.store.dispatch(deleteEmployee({...element}));
+    // this.router.navigate(['/employee/list'])
+  }
+
 }

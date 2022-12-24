@@ -52,7 +52,7 @@
               </mat-icon>
             </button>
 
-            <button class="text-red-500" mat-icon-button matTooltip="Delete" fxHide.lt-lg>
+            <button (click)="deleteEmployee(element)" class="text-red-500" mat-icon-button matTooltip="Delete" fxHide.lt-lg>
               <mat-icon color="warn">delete</mat-icon>
             </button>
         </td>

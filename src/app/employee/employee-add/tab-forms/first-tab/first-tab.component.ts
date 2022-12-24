@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {EmployeeModel} from "../../../model/employee.model";
+import {initializeEmployee} from "../../../state/employee.action";
 
 @Component({
   selector: 'app-first-tab',
@@ -32,6 +33,7 @@ export class FirstTabComponent implements OnInit, OnDestroy {
         this.setFormValue(res)
       }
     })
+    window.onbeforeunload = () => this.ngOnDestroy();
   }
 
   setFormValue (data) {
@@ -44,6 +46,16 @@ export class FirstTabComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if(this.firstForm.valid){
+      this.employee.id = this.firstForm.value.id;
+      this.employee.name = this.firstForm.value.name;
+      this.employee.age = this.firstForm.value.age;
+      this.employee.gender = this.firstForm.value.gender;
+      this.store.dispatch(initializeEmployee(this.employee));
+    }
+
+    console.log('hello');
+    // this.store.dispatch(initializeEmployee(this.firstForm.value));
   }
 
 }

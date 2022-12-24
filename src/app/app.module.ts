@@ -9,7 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from "@angular/material/icon";
 import {ToastrModule} from "ngx-toastr";
 import {StoreModule} from "@ngrx/store";
-import {loginReducer} from "./auth/state/login.reducer";
+import {loginReducer, userReducer} from "./auth/state/login.reducer";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
 import {empInitializeReducer, empListReducer} from "./employee/state/employee.reducer";
@@ -30,7 +30,7 @@ import {empInitializeReducer, empListReducer} from "./employee/state/employee.re
     MatButtonModule,
     ToastrModule.forRoot(),
     StoreModule.forRoot(
-      { isLoginPass: loginReducer, empList: empListReducer, employeeModel: empInitializeReducer}
+      { isLoginPass: loginReducer, empList: empListReducer, employeeModel: empInitializeReducer, users: userReducer}
     )
   ],
   providers: [],
