@@ -58,7 +58,7 @@ export class FirstTabComponent implements OnInit, OnDestroy {
       this.firstForm.value.phone = this.employee.phone;
       this.store.dispatch(initializeEmployee(this.firstForm.value));
     } else {
-      this.toast.warning("Fill The Form Tab-One..!!")
+      this.toast.warning("You didn't fill all required field from tab-one")
     }
 
     console.log('test');

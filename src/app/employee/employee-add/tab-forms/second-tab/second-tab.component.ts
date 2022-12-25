@@ -63,7 +63,7 @@ export class SecondTabComponent implements OnInit, OnDestroy {
       this.secondForm.value.finalForm = true;
       this.store.dispatch(initializeEmployee(this.secondForm.value));
     } else {
-      this.toast.warning("Fill The Form Tab-Two..!!")
+      this.toast.warning("You didn't fill all required field from tab-two")
     }
 
     console.log('test');
