@@ -13,6 +13,7 @@ import {loginReducer, userReducer} from "./auth/state/login.reducer";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatButtonModule} from "@angular/material/button";
 import {empInitializeReducer, empListReducer} from "./employee/state/employee.reducer";
+import {AuthGuard} from "./auth/resolver-guard/auth.guard";
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import {empInitializeReducer, empListReducer} from "./employee/state/employee.re
       { isLoginPass: loginReducer, empList: empListReducer, employeeModel: empInitializeReducer, users: userReducer}
     )
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

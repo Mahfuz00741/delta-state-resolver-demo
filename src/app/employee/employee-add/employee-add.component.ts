@@ -1,4 +1,6 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
+import {ThemePalette} from "@angular/material/core";
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-employee-add',
@@ -8,19 +10,27 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 })
 export class EmployeeAddComponent implements OnInit {
 
+  @ViewChild('tabGroup') tabGroup;
+
   tabs: any[] = [
-    { title: 'Basic Information', content: 'basicInformation', initiated: true, active: true },
-    { title: 'Skill Information', content: 'skillInformation', initiated: false },
-    { title: 'View Information', content: 'viewInformation', initiated: false },
+    { title: 'TAB-ONE', label: 'first', active: true },
+    { title: 'TAB-TWO', label: 'second', active: false },
   ];
+  selected = new FormControl(0);
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSelect(tab:any){
-    tab.initiated = true;
+  selectTab(selectedIndex) {
+    // if (selectedIndex == 1) {
+    //   this.tabs[0].active = false;
+    // }
+    this.tabs.map(m => {
+      m.active = false;
+    })
+    this.tabs[selectedIndex].active = true;
   }
 
 }

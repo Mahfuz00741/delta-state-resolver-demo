@@ -6,14 +6,14 @@
           <div class="flex items-center space-x-7">
             <label class="block w-1/4">Name</label>
             <mat-form-field class="border-2 rounded-md p-3 w-full">
-              <input matInput formControlName="name">
+              <input matInput formControlName="fullName">
               <mat-error class="text-red-500 mt-4">Name is required..!</mat-error>
             </mat-form-field>
           </div>
           <div class="flex items-center space-x-7">
             <label class="block w-1/4">Age</label>
             <mat-form-field class="border-2 rounded-md p-3 w-full">
-              <input matInput formControlName="age">
+              <input type="number" matInput formControlName="age">
               <mat-error class="text-red-500 mt-4">Age is required..!</mat-error>
             </mat-form-field>
           </div>
@@ -24,7 +24,7 @@
           </div>
           <div class="flex items-center space-x-7" style="margin-left: 28px;">
             <label class="block w-1/4">Gender</label>
-            <mat-radio-group class="space-x-6" aria-label="Select an option">
+            <mat-radio-group formControlName="gender" class="space-x-6" aria-label="Select an option">
               <mat-radio-button value="Male">Male</mat-radio-button>
               <mat-radio-button value="Female">Female</mat-radio-button>
             </mat-radio-group>

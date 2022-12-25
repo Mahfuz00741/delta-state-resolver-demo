@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Store} from "@ngrx/store";
 import {EmployeeModel} from "../../../model/employee.model";
 import {initializeEmployee} from "../../../state/employee.action";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-first-tab',
@@ -17,19 +18,24 @@ export class FirstTabComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
+    private toast: ToastrService,
     private store: Store<{employeeModel: EmployeeModel}>,
   ) { }
 
   ngOnInit(): void {
     this.firstForm = this.formBuilder.group({
       id: [''],
-      name: ['', Validators.required],
+      fullName: ['', Validators.required],
       age: ['', Validators.required],
-      gender: ['', Validators.required]
+      gender: ['', Validators.required],
+      salary: [''],
+      designation: [''],
+      phone: [''],
     })
 
     this.store.select('employeeModel').subscribe((res) => {
       if (res) {
+        this.employee = res;
         this.setFormValue(res)
       }
     })
@@ -39,22 +45,23 @@ export class FirstTabComponent implements OnInit, OnDestroy {
   setFormValue (data) {
     this.firstForm.patchValue({
       id: data.id,
-      name: data.name,
+      fullName: data.fullName,
       age: data.age,
-      gender: data.gender
+      gender: data.gender,
     })
   }
 
   ngOnDestroy(): void {
     if(this.firstForm.valid){
-      this.employee.id = this.firstForm.value.id;
-      this.employee.name = this.firstForm.value.name;
-      this.employee.age = this.firstForm.value.age;
-      this.employee.gender = this.firstForm.value.gender;
-      this.store.dispatch(initializeEmployee(this.employee));
+      this.firstForm.value.salary = this.employee.salary;
+      this.firstForm.value.designation = this.employee.designation;
+      this.firstForm.value.phone = this.employee.phone;
+      this.store.dispatch(initializeEmployee(this.firstForm.value));
+    } else {
+      this.toast.warning("Fill The Form Tab-One..!!")
     }
 
-    console.log('hello');
+    console.log('test');
     // this.store.dispatch(initializeEmployee(this.firstForm.value));
   }
 

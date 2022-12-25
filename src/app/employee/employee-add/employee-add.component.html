@@ -1,6 +1,21 @@
-<div class="w-full text-center">
-  <mat-tab-group class="w-full">
-    <mat-tab label="Tab-1"> <app-first-tab></app-first-tab> </mat-tab>
-    <mat-tab label="Tab-2"> <app-second-tab></app-second-tab> </mat-tab>
-  </mat-tab-group>
-</div>
+<!--<div class="w-full text-center">-->
+<!--  <mat-tab-group class="w-full">-->
+<!--    <mat-tab label="Tab-1"> <app-first-tab></app-first-tab> </mat-tab>-->
+<!--    <mat-tab label="Tab-2"> <app-second-tab></app-second-tab> </mat-tab>-->
+<!--  </mat-tab-group>-->
+<!--</div>-->
+
+<mat-tab-group  #tabGroup (click)="selectTab(selected.value)" [selectedIndex]="selected.value"
+               (selectedIndexChange)="selected.setValue($event)">
+  <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.title">
+
+    <ng-container *ngIf="tab.label=='first' && tab.active">
+      <app-first-tab></app-first-tab>
+    </ng-container>
+
+    <ng-container *ngIf="tab.label=='second' && tab.active">
+      <app-second-tab></app-second-tab>
+    </ng-container>
+
+  </mat-tab>
+</mat-tab-group>

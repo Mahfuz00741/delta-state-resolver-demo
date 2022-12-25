@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
 import {Store} from "@ngrx/store";
-import {AuthService} from "../service/auth.service";
 import {login} from "../state/login.action";
 import {ToastrService} from "ngx-toastr";
 import {Route, Router} from "@angular/router";
@@ -21,7 +20,6 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: UntypedFormBuilder,
     private store: Store<{ isLoginPass: boolean, users: any[] }>,
-    private authService: AuthService,
     private toast: ToastrService,
     private router: Router
   ) {
@@ -36,25 +34,6 @@ export class LoginComponent implements OnInit {
 
   resetLoginForm() {
     this.formGroup.reset();
-  }
-
-
-  login() {
-    if (this.validateEmail()) {
-      let response = this.authService.login(this.formGroup.value);
-      if (response) {
-        this.store.select('isLoginPass').subscribe((res) => {
-          if (res) {
-            this.toast.success('Success', "Login Successfully!", this.config);
-            this.router.navigate(['/employee/list'])
-          }
-        })
-      } else {
-        this.toast.error('Wrong Email or Password')
-      }
-    } else {
-      this.toast.warning("please enter valid email")
-    }
   }
 
   login2() {

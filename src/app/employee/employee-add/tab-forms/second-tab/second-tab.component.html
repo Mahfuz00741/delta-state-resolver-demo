@@ -6,7 +6,7 @@
           <div class="flex items-center space-x-7">
             <label class="block w-1/4">Salary</label>
             <mat-form-field class="border-2 rounded-md p-3 w-full">
-              <input matInput formControlName="salary">
+              <input type="number" matInput formControlName="salary">
               <mat-error class="text-red-500 mt-4">Salary is required..!</mat-error>
             </mat-form-field>
           </div>
@@ -25,14 +25,14 @@
           <div class="flex items-center space-x-7">
             <label class="block w-1/4">Phone</label>
             <mat-form-field class="border-2 rounded-md p-3 w-full">
-              <input matInput formControlName="phone">
+              <input type="number" matInput formControlName="phone">
               <mat-error class="text-red-500 mt-4">Phone is required..!</mat-error>
             </mat-form-field>
           </div>
         </div>
 
         <div class="flex justify-end">
-          <button (click)="updateEmp()" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Submit</button>
+          <button [disabled]="secondForm.invalid" (click)="clickUpdate()" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Submit</button>
         </div>
       </form>
     </div>

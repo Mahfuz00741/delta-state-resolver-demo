@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import {Store} from "@ngrx/store";
-import {AuthService} from "./auth/service/auth.service";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
+import {logout} from "./auth/state/login.action";
+import {initializeEmployee} from "./employee/state/employee.action";
+import {EmployeeModel} from "./employee/model/employee.model";
 
 @Component({
   selector: 'app-root',
@@ -16,7 +18,6 @@ export class AppComponent {
 
   constructor(
     private store: Store<{isLoginPass: boolean}>,
-    private authService: AuthService,
     private toast: ToastrService,
     private router: Router,
   ) {
@@ -32,13 +33,27 @@ export class AppComponent {
     })
   }
 
+  goTo(path) {
+    if ((path == 'employee/list' && !this.isLogin) || (path == 'employee/add' && !this.isLogin)) {
+      this.toast.warning('Please login first..!!');
+      this.router.navigate([path]);
+    } else if ((path == 'employee/list' && this.isLogin) || (path == 'employee/add' && this.isLogin)) {
+      this.router.navigate([path]);
+      if (path == 'employee/add' && this.isLogin) {
+        this.store.dispatch(initializeEmployee(new EmployeeModel()));
+      }
+    } else if (path == '') {
+      this.router.navigate([path]);
+    }
+  }
+
   logOutProcess() {
-    this.authService.logout();
+    this.store.dispatch(logout());
     this.store.select("isLoginPass").subscribe(res => {
       this.isLogin = res;
       if (!this.isLogin) {
-        this.toast.success('Success', "Logout Successfully!", this.config);
-        this.router.navigate(['/login']);
+        this.toast.success( "Successfully Logout");
+        this.router.navigate(['login']);
       }
     })
   }

@@ -1,5 +1,9 @@
 <div class="w-full">
-  <div class="m-10 border-2 border-pink-500">
+  <div class="mt-10 mr-10 ml-10 mb-2 flex justify-end">
+    <button printSectionId="print-section" ngxPrint printTitle="Employee List"
+            class="bg-green-600 p-2 rounded-md text-white">Download</button>
+  </div>
+  <div id="print-section" class="mb-10 mr-10 ml-10 border-2 border-pink-500">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table w-full">
       <!-- Position Column -->
       <ng-container matColumnDef="position">
@@ -10,7 +14,7 @@
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
       </ng-container>
 
       <!-- Weight Column -->
@@ -44,19 +48,19 @@
       </ng-container>
 
       <!-- Action Column -->
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef> Action </th>
-        <td mat-cell *matCellDef="let element">
-            <button (click)="editEmployee(element)" class="text-blue-500" mat-icon-button matTooltip="Edit" fxHide.lt-lg>
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef> Action </th>
+          <td mat-cell *matCellDef="let element">
+            <button (click)="editEmployee(element)" class="text-blue-500" mat-icon-button>
               <mat-icon color="accent">edit
               </mat-icon>
             </button>
 
-            <button (click)="deleteEmployee(element)" class="text-red-500" mat-icon-button matTooltip="Delete" fxHide.lt-lg>
+            <button (click)="deleteEmployee(element)" class="text-red-500" mat-icon-button>
               <mat-icon color="warn">delete</mat-icon>
             </button>
-        </td>
-      </ng-container>
+          </td>
+        </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

@@ -15,6 +15,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatRadioModule} from "@angular/material/radio";
+import {NgxPrintModule} from "ngx-print";
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import {MatRadioModule} from "@angular/material/radio";
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,
-    MatRadioModule
+    MatRadioModule,
+    NgxPrintModule
   ]
 })
 export class EmployeeModule { }

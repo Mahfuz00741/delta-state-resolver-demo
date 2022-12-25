@@ -21,6 +21,7 @@
     "@angular/router": "^14.2.12",
     "@ngneat/tailwind": "^7.0.3",
     "@ngrx/store": "^13.2.0",
+    "ngx-print": "1.2.1",
     "ngx-toastr": "^15.2.1",
     "postcss": "^8.4.19",
     "rxjs": "~6.6.0",

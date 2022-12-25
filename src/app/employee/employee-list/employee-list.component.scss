@@ -4,3 +4,18 @@
     text-align: center;
   }
 }
+
+//#action {
+//  @media print {
+//    visibility: hidden !important;
+//    display: none !important;
+//  }
+//}
+
+.demo-table th:nth-child(8), td:nth-child(8) {
+  @media print {
+    visibility: hidden !important;
+    display: none !important;
+  }
+  background-color: lightgray !important;
+}
