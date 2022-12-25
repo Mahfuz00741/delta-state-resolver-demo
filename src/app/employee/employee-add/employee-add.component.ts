@@ -23,7 +23,7 @@ export class EmployeeAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  selectTab(selectedIndex) {
+  destroyTab(selectedIndex) {
     // if (selectedIndex == 1) {
     //   this.tabs[0].active = false;
     // }

@@ -32,7 +32,8 @@
         </div>
 
         <div class="flex justify-end">
-          <button [disabled]="secondForm.invalid" (click)="clickUpdate()" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Submit</button>
+          <button *ngIf="!isNew" [disabled]="secondForm.invalid" (click)="clickUpdate()" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Submit</button>
+          <button *ngIf="isNew" [disabled]="secondForm.invalid" (click)="clickAdd()" class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900">Add New</button>
         </div>
       </form>
     </div>

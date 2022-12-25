@@ -5,7 +5,7 @@
 <!--  </mat-tab-group>-->
 <!--</div>-->
 
-<mat-tab-group  #tabGroup (click)="selectTab(selected.value)" [selectedIndex]="selected.value"
+<mat-tab-group  #tabGroup (click)="destroyTab(selected.value)" [selectedIndex]="selected.value"
                (selectedIndexChange)="selected.setValue($event)">
   <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab.title">
 
