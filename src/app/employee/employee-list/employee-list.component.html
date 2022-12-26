@@ -1,7 +1,10 @@
 <div class="w-full">
   <div class="mt-10 mr-10 ml-10 mb-2 flex justify-end">
     <button printSectionId="print-section" ngxPrint printTitle="Employee List"
-            class="bg-green-600 p-2 rounded-md text-white">Download</button>
+            class="bg-green-600 p-2 rounded-md text-white flex items-center space-x-2">
+      <mat-icon>print</mat-icon>
+      <div>Print</div>
+    </button>
   </div>
   <div id="print-section" class="mb-10 mr-10 ml-10 border-2 border-pink-500">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table w-full">
